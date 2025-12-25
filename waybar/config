@@ -1,0 +1,48 @@
+
+{
+  "layer": "top",
+  "position": "top",
+  "height": 20,
+
+  "modules-left": ["niri/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["network", "cpu", "memory", "pulseaudio", "battery", "tray"],
+
+  "clock": {
+    "format": "{:%d - %H:%M}"
+  },
+
+  "cpu": {
+    "format": "\uf4bc {usage}%"
+  },
+
+  "memory": {
+    "format": "\uefc5 {used:0.1f}G"
+  },
+
+  "network": {
+    "format-wifi": "<span size='small'>↑{bandwidthUpBytes} ↓{bandwidthDownBytes}</span> {icon} ",
+    "format-ethernet": "󰈀 ↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
+    "format-disconnected": "󰖪 Disconnected",
+     "format-icons": [
+    "󰤯",  // very weak
+    "󰤟",
+    "󰤢",
+    "󰤥",
+    "󰤨"   // strong
+  ],
+    "interval": 1
+  },
+
+  "battery": {
+    "format": "{icon}<span size='small'> {capacity}%</span>",
+    "format-icons": ["\udb80\udc8e", "\udb80\udc7a", "\udb80\udc7b", "\udb80\udc7b", "\udb80\udc7d", "\udb80\udc7e", "\udb80\udc7f", "\udb80\udc80", "\udb80\udc81", "\udb80\udc82", "\udb80\udc79"]
+  },
+  "pulseaudio": {
+  "format": "{icon}",
+    "format-muted": "\udb81\udd81",
+  "format-icons": ["\udb81\udd7f", "\udb81\udd80", "\udb81\udd7e"]
+}
+
+
+}
