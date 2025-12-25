@@ -17,6 +17,8 @@ NIRI_DST_CONFIG="$NIRI_DST_DIR/config.kdl"
 WAYBAR_CONFIG="$SCRIPT_DIR/waybar"
 FUZZEL_CONFIG="$SCRIPT_DIR/fuzzel"
 CONFIG_DIR="$HOME/.config/"
+HOME_DIR="$HOME/"
+WALLPAPER_DIR="$SCRIPT_DIR/Pictures"
 
 # Update system
 echo "Updating system..."
@@ -32,8 +34,9 @@ sudo pacman -S --noconfirm \
   xdg-desktop-portal-gtk \
   alacritty \
   fuzzel \
+  code \
   waybar \
-  chromium \
+  firefox \
   nano \
   nvim 
 
@@ -110,7 +113,7 @@ echo "Fuzzel config installed to $NIRI_DST_CONFIG"
 echo "=== Setup Complete ==="
 echo "Reboot recommended."
 
-
+cp -r -f "$WALLPAPER_DIR" "$HOME"
 
 # Install greetd
 echo "Installing greetd..."
