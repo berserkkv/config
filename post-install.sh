@@ -37,6 +37,8 @@ sudo pacman -S --noconfirm \
   code \
   waybar \
   firefox \
+  swaybg \
+  wl-clipboard \
   nano \
   nvim 
 
