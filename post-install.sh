@@ -14,6 +14,9 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 NIRI_SRC_CONFIG="$SCRIPT_DIR/config.kdl"
 NIRI_DST_DIR="$HOME/.config/niri"
 NIRI_DST_CONFIG="$NIRI_DST_DIR/config.kdl"
+WAYBAR_CONFIG="$SCRIPT_DIR/waybar"
+FUZZEL_CONFIG="$SCRIPT_DIR/fuzzel"
+CONFIG_DIR="$HOME/.config/"
 
 # Update system
 echo "Updating system..."
@@ -27,7 +30,12 @@ sudo pacman -S --noconfirm \
   xwayland-satellite \
   xdg-desktop-portal-gnome \
   xdg-desktop-portal-gtk \
-  alacritty
+  alacritty \
+  fuzzel \
+  waybar \
+  chromium \
+  nano \
+  nvim 
 
 # ALSA DSP fix
 ALSA_CONF="/etc/modprobe.d/alsa-base.conf"
@@ -66,6 +74,44 @@ fi
 echo "Installing JetBrains Mono Nerd Font..."
 yay -S --noconfirm ttf-jetbrains-mono-nerd
 
+
+
+# Install Niri config
+echo "Installing Niri config..."
+
+if [[ ! -f "$NIRI_SRC_CONFIG" ]]; then
+  echo "ERROR: config.kdl not found next to post-install.sh"
+  exit 1
+fi
+
+mkdir -p "$NIRI_DST_DIR"
+cp -f "$NIRI_SRC_CONFIG" "$NIRI_DST_CONFIG"
+
+echo "Niri config installed to $NIRI_DST_CONFIG"
+
+echo "=== Setup Complete ==="
+echo "Reboot recommended."
+
+# Install waybar config
+echo "Installing Waybar config..."
+
+cp -r -f "$WAYBAR_CONFIG" "$CONFIG_DIR"
+
+echo "Waybar config installed to $NIRI_DST_CONFIG"
+
+
+# Install fuzzel config
+echo "Installing Fuzzel config..."
+
+cp -r -f "$FUZZEL_CONFIG" "$CONFIG_DIR"
+
+echo "Fuzzel config installed to $NIRI_DST_CONFIG"
+
+echo "=== Setup Complete ==="
+echo "Reboot recommended."
+
+
+
 # Install greetd
 echo "Installing greetd..."
 sudo pacman -S --noconfirm greetd greetd-tuigreet
@@ -85,19 +131,3 @@ EOF
 echo "Enabling greetd..."
 sudo systemctl enable greetd.service
 sudo systemctl start greetd.service
-
-# Install Niri config
-echo "Installing Niri config..."
-
-if [[ ! -f "$NIRI_SRC_CONFIG" ]]; then
-  echo "ERROR: config.kdl not found next to post-install.sh"
-  exit 1
-fi
-
-mkdir -p "$NIRI_DST_DIR"
-cp -f "$NIRI_SRC_CONFIG" "$NIRI_DST_CONFIG"
-
-echo "Niri config installed to $NIRI_DST_CONFIG"
-
-echo "=== Setup Complete ==="
-echo "Reboot recommended."
