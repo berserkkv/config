@@ -29,9 +29,6 @@ echo "Installing core packages..."
 sudo pacman -S --noconfirm \
   sudo \
   niri \
-  xwayland-satellite \
-  xdg-desktop-portal-gnome \
-  xdg-desktop-portal-gtk \
   alacritty \
   fuzzel \
   code \
@@ -40,7 +37,34 @@ sudo pacman -S --noconfirm \
   swaybg \
   wl-clipboard \
   nano \
-  nvim 
+  nvim \
+  htop \
+  iwd \
+  mako \
+  openssh \
+  polkit \
+  smartmontools \
+  swayidle \
+  swaylock \
+  wget \
+  wireless_tools \
+  wpa_supplicant \
+  xdg-desktop-portal-gnome \
+  xdg-utils \
+  xorg-xwayland
+
+echo "Installing Intel open-source graphics stack..."
+pacman -S --noconfirm \
+  mesa \
+  vulkan-intel \
+  intel-media-driver \
+  libva-intel-driver \
+  xorg-server \
+  xorg-xinit
+
+echo "Enabling essential services..."
+systemctl enable iwd.service
+systemctl enable sshd.service
 
 # ALSA DSP fix
 ALSA_CONF="/etc/modprobe.d/alsa-base.conf"
@@ -53,6 +77,7 @@ if ! grep -Fxq "$DSP_LINE" "$ALSA_CONF" 2>/dev/null; then
 else
   echo "ALSA option already present."
 fi
+
 
 # Install fish
 echo "Installing fish..."
