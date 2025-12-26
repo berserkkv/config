@@ -33,7 +33,7 @@ sudo pacman -S --noconfirm \
   fuzzel \
   code \
   waybar \
-  firefox \
+  chromium \
   swaybg \
   wl-clipboard \
   nano \
